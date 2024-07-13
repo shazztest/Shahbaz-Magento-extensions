@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+	<body>
+		<move element="category.image" destination="page.top" before="breadcrumbs"/>
+		<move element="page.main.title" destination="columns" before="-" />
+		
+		<!-- Added Container in category listing page -->
+        <referenceContainer name="main.content">
+            <container name="container" htmlTag="div" htmlClass="container">
+                <container name="columns" label="Main Content Container" htmlTag="div" htmlClass="columns"/>
+            </container>
+        </referenceContainer>
+        
+	</body>
+</page>

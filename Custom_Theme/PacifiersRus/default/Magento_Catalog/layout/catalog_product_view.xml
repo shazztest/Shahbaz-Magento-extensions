@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="reviews.tab" destination="content" after="product.info.details" />
+        <referenceBlock name="view.addto.compare" remove="true" />
+        <referenceBlock name="catalog.compare.sidebar" remove="true" />
+        <referenceBlock name="view.addto.wishlist" remove="true"/>
+        <referenceBlock name="breadcrumbs" template="Magento_Theme::html/breadcrumbs.phtml" />
+        <block class="Magento\Catalog\Block\Breadcrumbs" />
+
+        <referenceContainer name="product.info.social">
+
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.socialmedia" template="Magento_Catalog::product/view/socialmedia.phtml"/>
+
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.note" template="Magento_Catalog::product/view/product_note.phtml"/>
+
+        </referenceContainer>
+
+        <block class="Magento\Framework\View\Element\Template" name="product.review.anchor" template="Magento_Review::anchor.phtml" before="product.info.details" />
+        
+        <!-- Added Container in product details page -->
+        <referenceContainer name="columns">
+            <container name="container" htmlTag="div" htmlClass="container">
+                <container name="main" label="Main Content Container" htmlTag="div" htmlClass="column main"/>
+            </container>
+        </referenceContainer>
+
+    </body>
+</page>
+

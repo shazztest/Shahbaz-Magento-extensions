@@ -1,0 +1,25 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Review\Block\Product\Review $block */
+?>
+<div class="detail-review">
+    <h2 class="product-section-title withform">Customer Reviews</h2>
+    <div id="product-review-container" data-role="product-review"></div>
+    <?= $block->getChildHtml() ?>
+
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Review/js/process-reviews": {
+                "productReviewUrl": "<?= $block->escapeJs($block->getProductReviewUrl()) ?>",
+                "reviewsTabSelector": "#tab-label-reviews"
+            }
+        }
+    }
+</script>

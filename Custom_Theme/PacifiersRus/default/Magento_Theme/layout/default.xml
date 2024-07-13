@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+         
+
+        <!-- move sign-in link  next to  minicart block -->
+        <move element="authorization-link-login" destination="header-wrapper" before="minicart" />
+
+        
+        <referenceContainer name="page.header" remove="true"/>
+
+        <referenceContainer name="footer-container">
+            <block class="Magento\Theme\Block\Html\Footer" name="footer" template="html/footer.phtml"/>
+        </referenceContainer>
+        <!-- <referenceContainer name="header-wrapper">
+            <block class="Magento\Wishlist\Block\Link" name="wish-list-link-custom" after="minicart" template="link.phtml" />
+        </referenceContainer> -->
+
+        <referenceContainer name="header.container">
+            <referenceBlock name="header.panel.wrapper" remove="true" />
+        </referenceContainer>
+        
+    </body>
+</page>

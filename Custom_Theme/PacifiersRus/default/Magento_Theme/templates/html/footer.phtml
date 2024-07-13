@@ -1,0 +1,7 @@
+<div class="footer content">
+    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer-menu')->toHtml();
+    ?>
+</div>
+<small class="copyright">
+    <span><?= $block->escapeHtml($block->getCopyright()) ?></span>
+</small>

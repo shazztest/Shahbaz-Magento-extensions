@@ -1,0 +1,55 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Magento\Customer\Block\Account\AuthorizationLink $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$helper = $this->helper('\Pacifier\Core\Helper\Data');
+$dataPostParam = '';
+if ($block->isLoggedIn()) {
+    $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+}
+ 
+
+
+?>
+<?php   if( $block->isLoggedIn() ) { ?>
+
+    <?php
+    echo 
+    $customerFirstname = '';
+    if ($helper->getCheckSession()) {  
+        $customerFirstname = $helper->getCustomerFirstName();
+    }
+
+    ?>
+<ul class="hdr-user">
+<li class="customer-welcome-message">   
+    <a href="#" class="ajax_login">Hi, <?php echo $customerFirstname; ?></a>
+    <div class="content_asset customer_dropdown_menu_affiliate">
+        <ul class="b-customer-menu_list h-hidden_mobile">
+            <li class="b-customer-menu_item"><a class="b-customer-menu_link first" href="<?= $block->getUrl('customer/account'); ?>">My Account</a>
+            </li>
+        </ul>
+    </div>
+</li>
+
+<li>
+<a href="<?= $block->getUrl('customer/account/logout'); ?>" class="ajax_login">
+    <?= __('Logout') ?>
+    </a>
+</li>
+</ul>
+<?php   } else {  ?>
+<li class="login_logout">  
+    <a href="<?= $block->getUrl('customer/account/login'); ?>" class="ajax_login">
+        <img src="/media/wysiwyg/user.jpg" alt="" height="21" />
+    </a>
+</li>
+
+<?php   } ?>
