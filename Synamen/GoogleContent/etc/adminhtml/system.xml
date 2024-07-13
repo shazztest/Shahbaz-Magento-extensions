@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="synamen" translate="label" sortOrder="10">
+            <label>synamen</label>
+        </tab>
+        <section id="synamen_googleapi" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Google Api</label>
+            <tab>synamen</tab>
+            <resource>Magento_Backend::system</resource>
+            <group id="syanmen" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>Google Api Settings</label>
+
+                <field id="status" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="merchant_id" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Merchant Id</label>
+                </field>
+                <field id="targetcountry" translate="label" type="multiselect" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Target Country</label>
+                        <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>0</can_be_empty>
+                </field>
+               <field id="googleapi_key_file" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="6" showInDefault="1" showInWebsite="1">
+            <label>Upload GoogleApi file</label>
+            <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+            <upload_dir config="system" scope_info="1">googleapi</upload_dir>
+        </field>
+            </group>
+        </section>
+    </system>
+</config>

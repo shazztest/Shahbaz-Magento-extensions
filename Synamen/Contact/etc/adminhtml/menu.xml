@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Synamen::top_level" title="Synamen" module="Synamen_Contact" sortOrder="9999" resource="Magento_Backend::content"/>
+		<add id="Synamen_Contact::synamen_contact_synamen_contacts" title="synamen contacts" module="Synamen_Contact" sortOrder="9999" resource="Magento_Backend::content" parent="Synamen::top_level" action="synamen_contact/synamencontacts/index"/>
+	</menu>
+</config>

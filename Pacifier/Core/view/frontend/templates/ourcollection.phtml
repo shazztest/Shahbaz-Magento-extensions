@@ -1,0 +1,137 @@
+<?php
+$helper = $this->helper('\Pacifier\Core\Helper\Data');
+$storeId = $helper->getStoreId();
+$mediaUrl = $helper->getMediaUrl();
+$category_ids 	= $this->getData('categories');
+$getProudctcollection = $block->getOurCollectionData($category_ids);
+$showCart = true;
+?>
+
+<div class="owl-carousel owl-theme our-collection-ls grid products-grid ">  
+<?php   
+	
+	foreach ($getProudctcollection as $product) :
+	
+	$_product 		= $helper->getLoadProduct($product->getId());
+	$ratingSummary  = $helper->getRatingSummary($_product);
+?>
+	<div class="item product product-item">
+		<div class="product-item-info">
+			<div class="product details product-item-details">
+		<?php
+			$simplePrice = $_product->getPrice();
+			if($_product->getTypeId() == "simple") {
+				$simplePrice = $_product->getPrice();
+			} else {
+				$_children = $_product->getTypeInstance()->getUsedProducts($_product);
+				foreach ($_children as $child){
+					$simplePrice = $child->getPrice();
+					break;
+				}
+			}
+			$_finalPrice =$_product->getFinalPrice();
+			$_price = $simplePrice;
+			if($_finalPrice < $_price) {
+				$_savingPercent = 100 - round(($_finalPrice / $_price)*100); ?>
+				<div class=" discount-off-label">
+					<?php echo $_savingPercent . '%'; ?><span>off</span>
+				</div>
+			<?php } ?>
+
+           <div class="product photo product-item-photo">
+			<a href="<?php echo $product->getProductUrl(); ?>" class="owlpname product-item-link">
+				<img alt="img" class="owl-lazy img-responsive catewiseimg"  src="<?= $mediaUrl ?>wysiwyg/placeholder.jpg"  data-src="<?= $mediaUrl . 'catalog/product' . $product->getImage();?>"></a>
+			</div>
+
+				<a href="#"data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist" title=""></a>
+				
+				<strong class="product name product-item-name"><a href="<?php echo $product->getProductUrl(); ?>" class="owlpname product-item-link"> <?php echo $product->getName();?></a></strong>
+				
+			
+			<div class="product-reviews-summary short">
+				<div class="rating-summary">
+					<div title="<?php echo (int)$ratingSummary; ?>%" class="rating-result">
+						<span style="width:<?php echo (int)$ratingSummary; ?>%"><span><?php echo (int)$ratingSummary; ?>%</span></span>
+					</div>
+				</div>
+			</div>
+
+			<?php /* @escapeNotVerified */ echo $block->getProductPrice($_product); ?>
+		 	<div class="product actions product-item-actions">
+             	<?php if ($showCart): ?>
+                 <div class="actions-primary">
+                    <?php if ($_product->isSaleable()): ?>
+                    <?php if ($_product->getTypeInstance()->hasRequiredOptions($_product)): ?>
+                    <button class="action tocart primary" data-mage-init='{"redirectUrl": {"url": "<?php /* @escapeNotVerified */ echo $block->getAddToCartUrl($_product) ?>"}}' type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Bag') ?>">
+                    <span><?php /* @escapeNotVerified */ echo __('Add to Bag') ?></span>
+                    </button>
+                    <?php else: ?>
+                    <?php $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                       $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_product), ['product' => $_product->getEntityId()])
+                       ?>
+                    <button class="action tocart primary"
+                       data-post='<?php /* @escapeNotVerified */ echo $postData; ?>'
+                       type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Bag') ?>">
+                    <span><?php /* @escapeNotVerified */ echo __('Add to Bag') ?></span>
+                    </button>
+                    
+                    <?php endif; ?>
+                    <?php else: ?>
+                    <?php if ($_product->getIsSalable()): ?>
+                    <div class="stock available"><span><?php /* @escapeNotVerified */ echo __('In stock') ?></span></div>
+                    <?php else: ?>
+                    <div class="stock unavailable"><span><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span>
+                    </div>
+                    <?php endif; ?>
+                    <?php endif; ?>
+                 </div>
+             	<?php endif; ?>
+		 	</div>
+		</div>
+	</div>
+	</div> 
+<?php endforeach; ?>
+</div>
+<script>
+require(['jquery','mageplaza/core/owl.carousel'],
+    function ($) {
+        $(document).ready(function() {			
+		 $(".our-collection-ls").owlCarousel({
+			nav : true, 
+			autoplay:false,
+		    autoplayTimeout:5000,
+		    autoplayHoverPause:true,
+			items : 4,
+			loop : true,
+			lazyLoad: true,
+			margin: 30,
+			dots : false,
+			responsiveClass:true,
+		    responsive:
+	    	{
+				0:{
+				    items:2,
+				    nav:true,
+					slideBy: 2
+				},
+				576:{
+				    items:2,
+				    nav:true,
+					slideBy: 2
+				},
+				992:{
+				    items:3,
+				    nav:true,
+					slideBy: 3
+				},
+				1200:{
+				    items:4,
+				    nav:true,
+					slideBy: 4
+				}
+
+	    	}
+		});	
+    });
+});
+</script>

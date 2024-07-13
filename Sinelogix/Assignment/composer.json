@@ -1,0 +1,17 @@
+{
+    "name": "sinelogix/module-assignment",
+    "description": "Sinelogix Task Module Build in Magento 2.4.5",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Shahbaz",
+            "email": "shahbazbela@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+}

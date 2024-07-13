@@ -1,0 +1,107 @@
+<?php
+/**
+ * @var $block \Switch\Core\Block\RelatedProduct
+ */
+
+$currentProduct = $block->getCurrentProductId();
+$productId = $currentProduct->getId();
+$ids = $currentProduct->getCategoryIds();
+$productCollection = $block->getProductCollectionByCategories($ids);
+$mediaUrl = $block->getMediaUrl();
+
+?>
+<div class="category-slider-all home-lp-pr">
+<div class="home-sale-banner detail-page-sld">
+<div class="related-product-head">
+	<h2>Related Products</h2>
+</div>
+
+<div class="rtl-pr products-grid">
+<?php 
+foreach ($productCollection as $products ){ 
+	$ratingSummary = $block->getRatingSummary($products);
+	?>
+	<div class="item product product-item">
+		<div class="product-item-info">
+			<div class="product details product-item-details">
+				<div class="product photo product-item-photo">
+					<a href="<?php echo $products->getProductUrl(); ?>">
+						<img alt="img" class="img-responsive"  src="<?= $mediaUrl . 'catalog/product' . $products->getImage();?>"  data-src="<?= $mediaUrl . 'catalog/product' . $products->getImage();?>"> </a>
+					</div>
+
+				<strong class="product name product-item-name"><a href="<?php echo $products->getProductUrl(); ?>" class="owlpname product-item-link"> <?php echo $products->getName();?></a></strong>
+			
+		
+			<div class="product-reviews-summary short">
+				<div class="rating-summary">
+					<div title="<?php echo (int)$ratingSummary; ?>%" class="rating-result">
+						<span style="width:<?php echo (int)$ratingSummary; ?>%"><span><?php echo (int)$ratingSummary; ?>%</span></span>
+					</div>
+				</div>
+			</div>
+			<?php /* @escapeNotVerified */ echo $block->getProductPrice($products); ?>
+			<div class="actions-primary">
+				<?php 
+				$postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                       $postData = $postDataHelper->getPostData($block->getAddToCartUrl($products), ['product' => $products->getEntityId()]);
+
+				 ?>
+				 <div class="product actions product-item-actions">
+				 <button class="action tocart primary"
+                       data-post='<?php /* @escapeNotVerified */ echo $postData; ?>'
+                       type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Bag') ?>">
+                    <span><?php /* @escapeNotVerified */ echo __('Add to Bag') ?></span>
+                    </button>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<?php }?>
+</div>
+</div>
+</div>
+<script>
+require(['jquery','WeltPixel_OwlCarouselSlider/js/owl.carousel'],
+    function ($) {
+        $(document).ready(function() {			
+		 $(".rtl-pr").owlCarousel({
+			nav : true, 
+			autoplay:false,
+		    autoplayTimeout:5000,
+		    autoplayHoverPause:true,
+			items : 5,
+			loop : true,
+			lazyLoad: true,
+			margin: 30,
+			dots : false,
+			responsiveClass:true,
+		    responsive:
+	    	{
+				0:{
+				    items:1,
+				    nav:true,
+					slideBy: 1
+				},
+				576:{
+				    items:2,
+				    nav:true,
+					slideBy: 2
+				},
+				992:{
+				    items:3,
+				    nav:true,
+					slideBy: 3
+				},
+				1200:{
+				    items:4,
+				    nav:true,
+					slideBy: 4
+				}
+	    	}
+		});	
+    });
+});
+</script>

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="synamen_contact_synamen_contacts" resource="default" engine="innodb" comment="synamen_contact_synamen_contacts Table">
+		<column xsi:type="int" name="synamen_contacts_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="synamen_contacts_id"/>
+		</constraint>
+		<column name="Name" nullable="false" xsi:type="varchar" comment="Name" length="255"/>
+		<column name="Email" nullable="false" xsi:type="varchar" comment="Email" length="255"/>
+		<column name="Telephone" nullable="true" xsi:type="varchar" comment="Telephone" length="255"/>
+		<column name="Subject" nullable="false" xsi:type="varchar" comment="Subject" length="255"/>
+		<column name="Comment" nullable="false" xsi:type="text" comment="What’s on your mind?"/>
+		<column name="Custom_option" nullable="true" xsi:type="boolean" comment="Custom option"/>
+		<column name="check_box" nullable="true" xsi:type="varchar" comment="Check Box" length="255"/>
+		<column name="date" nullable="true" xsi:type="datetime" comment="Date"/>
+	</table>
+</schema>

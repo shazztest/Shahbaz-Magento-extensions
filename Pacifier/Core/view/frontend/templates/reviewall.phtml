@@ -1,0 +1,63 @@
+<?php
+$reviewCollection = $block->getAllReviews();
+?>
+
+	<div class="owl-carousel owl-theme top-review-ls grid products-grid ">  
+	<?php  
+	foreach ($reviewCollection as $review) :
+	?>
+	<div class="card">
+  <div class="card-body">
+    <p class="card-text"><?php echo  $review['detail']; ?></p>
+    
+  </div>
+  <h6><b><?php echo "- ".$review['nickname']; ?></b></h6>
+</div>
+
+<?php endforeach; ?>
+</div>
+
+
+
+<script>
+require(['jquery','mageplaza/core/owl.carousel'],
+    function ($) {
+        $(document).ready(function() {			
+		 $(".top-review-ls").owlCarousel({
+			nav : true, 
+			autoplay:true,
+		    autoplayTimeout:5000,
+		    autoplayHoverPause:true,
+			items : 2,
+			loop : true,
+			lazyLoad: true,
+			dots : true,
+			responsiveClass:true,
+		    responsive:
+	    	{
+				0:{
+				    items:1,
+				    nav:true,
+					slideBy: 1
+				},
+				576:{
+				    items:2,
+				    nav:true,
+					slideBy: 2
+				},
+				992:{
+				    items:2,
+				    nav:true,
+					slideBy: 2
+				},
+				1200:{
+				    items:2,
+				    nav:true,
+					slideBy: 2
+				}
+
+	    	}
+		});	
+    });
+});
+</script>

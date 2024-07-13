@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/synamen-contact/synamen_contacts" method="POST">
+		<service class="Synamen\Contact\Api\SynamenContactsRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Synamen_Contact::synamen_contacts_save"/>
+		</resources>
+	</route>
+	<route url="/V1/synamen-contact/synamen_contacts/search" method="GET">
+		<service class="Synamen\Contact\Api\SynamenContactsRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Synamen_Contact::synamen_contacts_view"/>
+		</resources>
+	</route>
+	<route url="/V1/synamen-contact/synamen_contacts/:synamenContactsId" method="GET">
+		<service class="Synamen\Contact\Api\SynamenContactsRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Synamen_Contact::synamen_contacts_view"/>
+		</resources>
+	</route>
+	<route url="/V1/synamen-contact/synamen_contacts/:synamenContactsId" method="PUT">
+		<service class="Synamen\Contact\Api\SynamenContactsRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Synamen_Contact::synamen_contacts_update"/>
+		</resources>
+	</route>
+	<route url="/V1/synamen-contact/synamen_contacts/:synamenContactsId" method="DELETE">
+		<service class="Synamen\Contact\Api\SynamenContactsRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Synamen_Contact::synamen_contacts_delete"/>
+		</resources>
+	</route>
+</routes>

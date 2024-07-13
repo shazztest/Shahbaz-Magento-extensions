@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="synamen_feeds" frontName="synamen_feeds">
+            <module name="Synamen_GoogleContent"/>
+        </route>
+        <route id="synamen_attribute" frontName="synamen_attribute">
+            <module name="Synamen_GoogleContent"/>
+        </route>
+    </router>
+</config>

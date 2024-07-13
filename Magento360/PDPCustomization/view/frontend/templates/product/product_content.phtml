@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var \Magento\Catalog\Block\Product\View $block
+ */
+
+
+$_product = $block->getProduct();
+$productFeatureImg1 = $_product->getCustomAttribute('product_features_image_1');
+
+?>
+
+<img src="<?php echo $productFeatureImg1->getValue(); ?>">
+<div class="custom-gallery-section">
+<div class="gallery-img"><img src="<?php echo $productFeatureImg1->getValue(); ?>"></div>
+<div class="gallery-img">img URL</div>
+<div class="gallery-img">img URL</div>
+<div class="gallery-img">img URL</div>
+
+</div>

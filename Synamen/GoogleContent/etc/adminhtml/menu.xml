@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Synamen_GoogleContent::view" title="Synamen" module="Synamen_GoogleContent" sortOrder="50" resource="Synamen_GoogleContent::view"/>
+
+        <add id="Synamen_GoogleContent::menu" title="Synamen Feed Category Mapping" module="Synamen_GoogleContent" sortOrder="20" parent="Synamen_GoogleContent::view" action="synamen_feeds/mapping/index" resource="Synamen_GoogleContent::menu"/>
+
+        <add id="Synamen_GoogleContent::configuration" title="Synamen Configuration" module="Synamen_GoogleContent" sortOrder="20" parent="Synamen_GoogleContent::view" action="adminhtml/system_config/edit/section/googleapi/" resource="Synamen_GoogleContent::configuration"/>
+
+
+        <add id="Synamen_GoogleContent::attribute" title="Synamen Attribute Mapping" module="Synamen_GoogleContent" sortOrder="20" parent="Synamen_GoogleContent::view" action="synamen_attribute/attribute/productattribute" resource="Synamen_GoogleContent::attribute"/>
+
+    </menu>
+</config>

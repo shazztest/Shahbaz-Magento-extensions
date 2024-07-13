@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mapping_form.mapping_form_data_source</item>
+            <item name="deps" xsi:type="string">mapping_form.mapping_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Mapping Data</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">mapping_form</item>
+            <item name="nameModal" xsi:type="string">run_export</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Synamen\GoogleContent\Block\Adminhtml\Edit\BackButton</item>
+            <item name="save" xsi:type="string">Synamen\GoogleContent\Block\Adminhtml\Edit\SaveButton</item>
+        </item>
+    </argument>
+    <dataSource name="mapping_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Synamen\GoogleContent\Model\Mapping\DataProvider</argument>
+            <argument name="name" xsi:type="string">mapping_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="synamen_feeds/mapping/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="feed_mapping_provider">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">General Settings</item>
+<!--                <item name="collapsible" xsi:type="boolean">true</item>-->
+            </item>
+        </argument>
+        <field name="id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">id</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">feed_mapping_provider</item>
+                </item>
+            </argument>
+        </field>
+        <field name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">title</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">feed_mapping_provider</item>
+                    <item name="label" xsi:type="string" translate="true">Title</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="product_filter_collection">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">Product Filter Collection</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">feed_mapping_provider</item>
+                    <item name="dataScope" xsi:type="string">product_filter_collection</item>
+                    <item name="options" xsi:type="array">
+                        <item name="value" xsi:type="string">12</item>
+                        <item name="label" xsi:type="string">product_id</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="type_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Synamen\GoogleContent\Model\Mapping\FeedList</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Synamen_GoogleContent/js/form/select-disabled</item>
+                    <item name="label" xsi:type="string" translate="true">Type</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">item</item>
+                    <item name="dataScope" xsi:type="string">type_id</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+<!--                    <item name="disabled" xsi:type="boolean">true</item>-->
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleDisabled" xsi:type="string">${$.parentName}.id:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="token">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Synamen_GoogleContent/js/form/dep-file</item>
+                    <item name="elementTmpl" xsi:type="string">Synamen_GoogleContent/form/element/feed_token</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Token</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="dataScope" xsi:type="string">token</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+<!--                        <item name="max_text_length" xsi:type="string">1</item>-->
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${$.parentName}.type_id:value</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="2" xsi:type="string">Ebay</item>
+                        <item name="3" xsi:type="string">Amazon</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="login">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Synamen_GoogleContent/js/form/dep-file</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Login</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="dataScope" xsi:type="string">login</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${$.parentName}.type_id:value</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="4" xsi:type="string">Awin</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="password">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Synamen_GoogleContent/js/form/dep-file</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Password</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                    <item name="dataScope" xsi:type="string">password</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${$.parentName}.type_id:value</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="4" xsi:type="string">Awin</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <button name="button_connect" class="Magento\Ui\Component\Container">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Synamen_GoogleContent/js/components/button-connect</item>
+                    <item name="title" xsi:type="string">Get Category</item>
+                    <item name="loadCategoryUrl" xsi:type="url" path="synamen_feeds/ajax/category"/>
+                    <item name="sortOrder" xsi:type="number">90</item>
+                    <item name="source" xsi:type="string">feed_mapping_provider</item>
+                </item>
+            </argument>
+        </button>
+    </fieldset>
+
+    <fieldset name="source_category_map_container">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Category Mapping</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <dynamicRows name="source_category_map" sortOrder="50" >
+            <settings>
+                <addButtonLabel translate="true">Add Value</addButtonLabel>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <componentType>dynamicRows</componentType>
+                <dndConfig>
+                    <param name="enabled" xsi:type="boolean">true</param>
+                </dndConfig>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="component" xsi:type="string">Magento_Ui/js/dynamic-rows/record</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                    </item>
+                </argument>
+                <field name="source_category_magento" formElement="select">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="prefixName" xsi:type="string">source_category_magento.value</item>
+                            <item name="dataScope" xsi:type="string">source_category_magento</item>
+                            <item name="fit" xsi:type="boolean">false</item>
+                            <item name="label" xsi:type="string" translate="true">Magento Category</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="validation" xsi:type="array">
+                                <item name="required-entry" xsi:type="boolean">true</item>
+                            </item>
+                        </item>
+                    </argument>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <options class="Synamen\GoogleContent\Ui\Component\Listing\Column\Feeds\Category\Magento"/>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <field name="source_category_feed">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="component" xsi:type="string">Synamen_GoogleContent/js/form/auto-complete</item>
+                            <item name="url" xsi:type="url" path="synamen_feeds/ajax/PortionCategory"/>
+                            <item name="loadCategoryName" xsi:type="url" path="synamen_feeds/ajax/categoryProvider"/>
+                            <item name="source" xsi:type="string">category_feed</item>
+                            <item name="dataScope" xsi:type="string">source_category_feed</item>
+                            <item name="label" xsi:type="string" translate="true">Feed Category</item>
+                            <item name="validation" xsi:type="array">
+                                <item name="required-entry" xsi:type="boolean">true</item>
+                            </item>
+                        </item>
+                    </argument>
+                </field>
+                <actionDelete name="action_delete">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">true</item>
+                            <item name="prefixElementName" xsi:type="string">option_</item>
+                            <item name="prefixName" xsi:type="string">Params.delete</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <dataType>text</dataType>
+                        <componentType>actionDelete</componentType>
+                    </settings>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+  <!--   <fieldset name="assign_product_grid">
+        <field name="rh_products">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Products Fieldset</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+            <container name="assign_products_container" >
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="sortOrder" xsi:type="number">170</item>
+                    </item>
+                </argument>
+                <htmlContent name="html_content">
+                    <argument name="block" xsi:type="object">Synamen\GoogleContent\Block\Adminhtml\AssignProducts</argument>
+                </htmlContent>
+            </container>
+        </field>
+    </fieldset> -->
+</form>

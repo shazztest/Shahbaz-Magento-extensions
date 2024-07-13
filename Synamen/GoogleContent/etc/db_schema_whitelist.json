@@ -1,0 +1,15 @@
+{
+    "icp_catalog_product_default_super_link": {
+        "column": {
+            "id": true,
+            "title": true,
+            "type_id": true,
+            "credentials_data": true,
+            "mapping_data": true,
+            "rh_products": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
